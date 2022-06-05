@@ -83,7 +83,7 @@ def build_model():
 
         ('clf', RandomForestClassifier())
         ])
-
+    """
     parameters = {
         'features__text_pipeline__vect__ngram_range': ((1, 1), (1, 2)),
         'clf__n_estimators': [50, 100, 200],
@@ -91,20 +91,20 @@ def build_model():
     }
 
     cv = GridSearchCV(pipeline, param_grid=parameters)
+    """
     
-    
-    return cv
+    return pipeline
 
 
 def evaluate_model(model, X_test, Y_test, category_names):
-    y_pred = model.predict(X_test[category_names])
+    y_pred = model.predict(X_test)
     target_names = ['class 0', 'class 1', 'class 2']
-    print(classification_report(y_test[category_names], y_pred, target_names=target_names))
+    print(classification_report(Y_test, y_pred, target_names=target_names))
 
 
 def save_model(model, model_filepath):
-    with open('model_pkl', 'wb') as files:
-        pickle.dump(model, model_filepath)
+    with open(model_filepath, 'wb') as files:
+        pickle.dump(model, files)
 
 
 def main():
