@@ -113,9 +113,7 @@ def evaluate_model(model, X_test, Y_test, category_names):
     """
     # predicted value
     y_pred = model.predict(X_test)
-    target_names = []
-    for col in range(len(category_names)):
-        target_names.append('v_' + str(col))
+    target_names = category_names
     print(classification_report(Y_test, y_pred, target_names=target_names))
 
 
