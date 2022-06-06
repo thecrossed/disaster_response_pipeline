@@ -40,12 +40,17 @@ model = joblib.load("../models/classifier.pkl")
 def index():
     
     # extract data needed for visuals
-    # TODO: Below is an example - modify to extract data for your own visuals
+    # Chart 1 data - number of messager per genre
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
     
+    
+    # Chart 2 data - top 10 message in length
+    df['text_length'] = df['message'].apply(len)
+    df_top_10 = df.sort_values(by =['text_length'],ascending = False).head(10)
+    
+    
     # create visuals
-    # TODO: Below is an example - modify to create your own visuals
     graphs = [
         {
             'data': [
@@ -64,7 +69,28 @@ def index():
                     'title': "Genre"
                 }
             }
+        },
+        
+                {
+            'data': [
+                Bar(
+                    x=df_top_10['message'],
+                    y=df_top_10['text_length']
+                )
+            ],
+
+            'layout': {
+                'title': 'Top 10 message in length',
+                'yaxis': {
+                    'title': "text length"
+                },
+                'xaxis': {
+                    'title': "message"
+                }
+            }
         }
+        
+        
     ]
     
     # encode plotly graphs in JSON
