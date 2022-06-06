@@ -36,13 +36,14 @@ def clean_data(df):
     categories.columns = columns
     for column in categories:
         # set each value to be the last character of the string
-        categories[column] = categories[column].apply(lambda x: x[-1])
-    # convert column from string to numeric
-    categories[column] = categories[column].astype(int)
+        # transform categories data into int
+        categories[column] = categories[column].apply(lambda x: x[-1]).astype(int)
     df = df.drop(columns = ['categories'])
     df = pd.concat([df, categories], axis=1)
     # drop duplicates
     df = df.drop_duplicates()
+    # replace 2 with 1 in the column related
+    df['related'] = df['related'].replace(2,1)
     return df
 
 
