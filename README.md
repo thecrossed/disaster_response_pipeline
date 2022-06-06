@@ -6,7 +6,20 @@ This is a project about machine learning pipeline project from the Data Scientis
 # Summary
 This project aims to help people consume disaster information in an efficient manner. It use natural language processing techniques classify text message into different categories based on which type of disaster it belongs to.
 
-
+# Files
+app
+| - template
+| |- master.html # main page of web app
+| |- go.html # classification result page of web app
+|- run.py # Flask file that runs app
+data
+|- disaster_categories.csv # data to process
+|- disaster_messages.csv # data to process
+|- process_data.py
+|- InsertDatabaseName.db # database to save clean data to
+models
+|- train_classifier.py
+README.md
 
 # How to use it?
 
