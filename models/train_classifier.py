@@ -39,8 +39,8 @@ def load_data(database_filepath):
     engine = create_engine("sqlite:///" + database_filepath)
     df = pd.read_sql_table('MessageCategory', "sqlite:///" + database_filepath) 
     X = df['message']
-    Y = df['related']
-    category_names = 'related'
+    Y = df.iloc[: , -35:]
+    category_names = Y.columns
     
     return X, Y , category_names
 
