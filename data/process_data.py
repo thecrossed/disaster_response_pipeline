@@ -54,7 +54,7 @@ def save_data(df, database_filename):
     database_filename: file name in the database
     """
     engine = create_engine("sqlite:///" + database_filename)
-    df.to_sql('MessageCategory', engine, index=False)
+    df.to_sql('MessageCategory', engine, index=False, if_exists='replace')
   
 
 

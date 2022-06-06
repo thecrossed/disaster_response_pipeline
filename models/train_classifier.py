@@ -71,6 +71,11 @@ def tokenize(text):
 
 
 def build_model():
+    """
+    This function building a model by pipepline function.
+    
+    It uses FeatureUnion to implement different models all together
+    """
     pipeline = Pipeline([
         ('features', FeatureUnion([
 
@@ -97,12 +102,28 @@ def build_model():
 
 
 def evaluate_model(model, X_test, Y_test, category_names):
+    """
+    input:
+    model: the model trained to predict y
+    X_test: test data set in the X variable
+    Y_test: test data set in the Y variable
+    category_names: columns in the Y dataset
+    output:
+    print the performance of the predicted outcome against the true Y test data
+    """
     y_pred = model.predict(X_test)
     target_names = ['class 0', 'class 1', 'class 2']
     print(classification_report(Y_test, y_pred, target_names=target_names))
 
 
 def save_model(model, model_filepath):
+    """
+    input:
+    model: the model trained to predict y
+    model_filepath: the place we store the model
+    output:
+    store the model into a pickle file
+    """
     with open(model_filepath, 'wb') as files:
         pickle.dump(model, files)
 
