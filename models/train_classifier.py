@@ -111,8 +111,11 @@ def evaluate_model(model, X_test, Y_test, category_names):
     output:
     print the performance of the predicted outcome against the true Y test data
     """
+    # predicted value
     y_pred = model.predict(X_test)
-    target_names = ['class 0', 'class 1', 'class 2']
+    target_names = []
+    for col in range(len(category_names)):
+        target_names.append('v_' + str(col))
     print(classification_report(Y_test, y_pred, target_names=target_names))
 
 
