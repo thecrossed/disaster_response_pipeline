@@ -13,11 +13,12 @@ This project aims to help people consume disaster information in an efficient ma
 You can open your terminal and 
 
 #### To create a processed sqlite db
-python process_data.py disaster_messages.csv disaster_categories.csv DisasterResponse.db
+python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db
 #### To train and save a pkl model
-python train_classifier.py ../data/DisasterResponse.db classifier.pkl
+python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl
 #### To deploy the application locally
-python run.py
+- Go to `app` directory: `cd app`
+- Run your web app: `python run.py`
 
 
 # Acknowledgement
